@@ -1,0 +1,194 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo img {
+  height: 60px;
+}
+
+.info-box {
+  text-align: right;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.main-section {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Left Column */
+.left-column {
+  flex: 1 1 25%;
+  min-width: 220px;
+}
+
+.left-column h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.left-column h3 {
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+.left-column p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Middle Column */
+.middle-column {
+  flex: 1 1 30%;
+  min-width: 220px;
+  display: flex;
+  /* flex-direction: column; */
+  gap: 20px;
+}
+
+.places-column h3,
+.things-column h3 {
+  margin-bottom: 5px;
+}
+
+.places-column ul,
+.things-column ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.places-column li,
+.things-column li {
+  margin-bottom: 5px;
+}
+
+.places-column a,
+.things-column a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Right Column (Images) */
+.right-column {
+  flex: 1 1 40%;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-width: 300px;
+}
+
+.right-column img {
+  max-width: 48%;
+  height: auto;
+  border: 1px solid #ccc;
+  object-fit: cover;
+}
+
+/* Bottom Red Bars */
+.red-bars {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.red-bar {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  flex: 1;
+  text-align: center;
+}
+
+.left-bar {
+  margin-right: 10px;
+}
+
+.right-bar {
+  margin-left: 10px;
+}
+
+
+ .big {
+    display: flex;
+    justify-content: space-between;
+    gap: 3%; /* Optional: add spacing instead of relying on width math */
+    margin-top: 70px;
+    flex-wrap: wrap; /* Prevents overflow if screen is too small */
+  }
+
+  .small {
+    width: 48%; /* Reduced to account for spacing */
+    background-color: #f9f9f9; /* Optional for visualization */
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Optional visual aid */
+  }
+
+  .content1 {
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .imgClass {
+    width: 48%;
+  }
+
+  .imgLink {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .content {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main-section {
+    flex-direction: column;
+  }
+
+  .right-column {
+    justify-content: center;
+  }
+
+  .right-column img {
+    max-width: 100%;
+  }
+
+  .red-bars {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .left-bar,
+  .right-bar {
+    margin: 0;
+  }
+  
+}

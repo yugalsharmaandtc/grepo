@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zenith</title>
+    <link rel="stylesheet" href="zenith.css" />
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="images/zenith_logo1.png" alt="Zenith Holidays Logo" />
+        </div>
+        <div class="info-box">
+            <p>&lt;Guest Login&gt;</p>
+            <p>Currency: AED</p>
+            <p>Region: Middle East</p>
+            <p>Language: English</p>
+            <p><strong>Web-Check here</strong></p>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="main-section">
+        <!-- Left Column -->
+        <div class="left-column">
+            <h1>Dubai</h1>
+            <h3>United Arab Emirates</h3>
+            <p>
+                Let’s cut to the chase—Singapore isn’t just another city; it’s a full-blown sensory overload
+                dressed up as a utopian future. If you’re landing here for the first time, forget what you’ve
+                heard about it being “sterile” or “too perfect.” This place has soul, grit, and surprises
+                lurking behind every spotless street. <a href="#">See more</a>
+            </p>
+        </div>
+
+        <!-- Middle Column -->
+        <div class="middle-column">
+            <div class="places-column">
+                <h3>Places to visit</h3>
+                <ul>
+                    <li><a href="#">Burj Khalifa</a></li>
+                    <li><a href="#">Burj Al Arab</a></li>
+                    <li><a href="#">Grand Mosque</a></li>
+                    <li><a href="#">Dubai Mall</a></li>
+                    <li><a href="#">Dubai Museum</a></li>
+                    <li><a href="#">Dubai Fountains</a></li>
+                </ul>
+            </div>
+            <div class="things-column">
+                <h3>Things to do</h3>
+                <ul>
+                    <li><a href="#">City Tour</a></li>
+                    <li><a href="#">Desert Safari</a></li>
+                    <li><a href="#">Dhow Cruise</a></li>
+                    <li><a href="#">Marina Cruise</a></li>
+                    <li><a href="#">Jet Ski to Burj Al Arab</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Column (Images) -->
+        <div class="right-column">
+            <img src="images/alarab.png" alt="Burj Al Arab" />
+            <img src="images/khalifa.png" alt="Burj Khalifa" />
+        </div>
+    </main>
+
+    <!-- Bottom Red Bars -->
+    <div class="red-bars">
+        <div class="red-bar left-bar">Places to Visit</div>
+        <div class="red-bar right-bar">Things to do</div>
+    </div>
+
+<style>
+  * {
+    box-sizing: border-box; /* Prevents padding/borders from breaking layout */
+  }
+
+  .big {
+    display: flex;
+    justify-content: space-between;
+    gap: 3%; /* Optional: add spacing instead of relying on width math */
+    margin-top: 70px;
+    flex-wrap: wrap; /* Prevents overflow if screen is too small */
+  }
+
+  .small {
+    width: 48%; /* Reduced to account for spacing */
+    background-color: #f9f9f9; /* Optional for visualization */
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Optional visual aid */
+  }
+
+  .content1 {
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .imgClass {
+    width: 48%;
+  }
+
+  .imgLink {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .content {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+</style>
+
+
+    <div class="big">
+       
+        <div class="small">
+              <div class="content1">  Burj khalifa</div>
+            <div class="inner">
+                <div class ="imgClass"><img class="imgLink" src="images/alarab.png" alt="">
+                </div>
+                <div class ="imgClass"><img class="imgLink" src="images/alarab.png" alt=""></div>
+                
+            </div>
+            <div class="content">
+                Burj Khalifa: Let’s cut to the chase—you haven’t really seen Dubai until you’ve stood at the base of the
+                Burj Khalifa, craning your neck until it hurts. This isn’t just a tall building; it’s a middle finger to
+                gravity. At 828 meters, the views from "At the Top" (124th floor) will make your stomach drop—the city
+                sprawls beneath you like a toy model, with tiny cars inching along highways and the desert bleeding into
+                the ocean. Go at sunset when the light turns the glass towers into molten gold. Pro tip: Skip the basic
+                tickets and splurge on the SKY level (148th floor)—you’ll bypass the crowds and get a champagne toast
+                that feels ridiculously fancy when you’re hovering a half-mile in the air.
+            </div>
+        </div>
+      
+        
+        <div class="small">
+              <div class="content1">  Burj khalifa</div>
+            <div class="inner">
+                <div class ="imgClass"><img class="imgLink" src="images/alarab.png" alt="">
+                </div>
+                <div class ="imgClass"><img class="imgLink" src="images/alarab.png" alt=""></div>
+                
+            </div>
+            <div class="content">
+                Burj Khalifa: Let’s cut to the chase—you haven’t really seen Dubai until you’ve stood at the base of the
+                Burj Khalifa, craning your neck until it hurts. This isn’t just a tall building; it’s a middle finger to
+                gravity. At 828 meters, the views from "At the Top" (124th floor) will make your stomach drop—the city
+                sprawls beneath you like a toy model, with tiny cars inching along highways and the desert bleeding into
+                the ocean. Go at sunset when the light turns the glass towers into molten gold. Pro tip: Skip the basic
+                tickets and splurge on the SKY level (148th floor)—you’ll bypass the crowds and get a champagne toast
+                that feels ridiculously fancy when you’re hovering a half-mile in the air.
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="zenith.js"></script>
+</body>
+
+</html>
