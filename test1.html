@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zenith - Discover Dubai</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* ===== MODERN RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gold-gradient: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --border-radius: 20px;
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        /* ===== GLASSMORPHISM CONTAINER ===== */
+        .main-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            margin: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== MODERN HEADER ===== */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 25px 35px;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-img {
+            height: 70px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .info-box {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .main-section {
+            animation: fadeIn 1.2s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .left-column {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            animation: slideInLeft 1s ease-out 0.5s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-light);
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        /* ===== NAVIGATION COLUMNS ===== */
+        .middle-column {
+            display: flex;
+            gap: 30px;
+        }
+
+        .places-column, .things-column {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 35px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            flex: 1;
+            transition: all 0.4s ease;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .places-column:hover, .things-column:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .navigation-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .navigation-list li {
+            margin-bottom: 15px;
+            animation: slideInRight 0.6s ease-out calc(var(--i) * 0.1s) both;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: block;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-link:hover {
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .nav-link:hover::before {
+            left: 0;
+        }
+
+        /* ===== HERO IMAGES ===== */
+        .right-column {
+            animation: fadeInRight 1s ease-out 1.1s both;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image {
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s ease;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-image:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ===== RED BARS REDESIGN ===== */
+        .red-bars {
+            margin: 60px 0;
+            animation: fadeInUp 1s ease-out 1.3s both;
+        }
+
+        .red-bar {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 25px 35px;
+            font-weight: 600;
+            font-size: 18px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .red-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .red-bar:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .red-bar:hover::before {
+            left: 100%;
+        }
+
+        /* ===== CONTENT CARDS ===== */
+        .content-section {
+            margin-top: 80px;
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 35px;
+            height: 100%;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out calc(var(--card-index) * 0.1s) both;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .content-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .card-image {
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .card-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-content {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-light);
+            text-align: justify;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .main-container {
+                margin: 10px;
+                padding: 25px;
+                border-radius: 20px;
+            }
+            
+            .middle-column {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .main-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .info-box {
+                margin-top: 20px;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .left-column, .places-column, .things-column {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-container {
+                margin: 5px;
+                padding: 15px;
+            }
+            
+            .main-title {
+                font-size: 1.8rem;
+            }
+            
+            .red-bar {
+                padding: 20px;
+                font-size: 16px;
+            }
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== LOADING ANIMATION ===== */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 1s ease-out 2s forwards;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-overlay">
+        <div class="loader"></div>
+    </div>
+
+    <div class="main-container">
+        
+        <!-- Header -->
+        <header class="header d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <img src="images/zenith_logo1.png" alt="Zenith Holidays Logo" class="logo-img" />
+            </div>
+            <div class="info-box">
+                <p class="mb-1"><strong>Guest Login</strong></p>
+                <p class="mb-1">Currency: AED</p>
+                <p class="mb-1">Region: Middle East</p>
+                <p class="mb-1">Language: English</p>
+                <p class="mb-0"><strong>Web-Check here</strong></p>
+            </div>
+        </header>
+
+        <!-- Main Section -->
+        <main class="main-section">
+            <div class="row g-4 align-items-start">
+                
+                <!-- Left Column -->
+                <div class="col-lg-3 col-md-12">
+                    <div class="left-column">
+                        <h1 class="main-title">Dubai</h1>
+                        <h3 class="section-title">United Arab Emirates</h3>
+                        <p class="description">
+                            Let's cut to the chase—Singapore isn't just another city; it's a full-blown sensory overload
+                            dressed up as a utopian future. If you're landing here for the first time, forget what you've
+                            heard about it being "sterile" or "too perfect." This place has soul, grit, and surprises
+                            lurking behind every spotless street. <a href="#" class="text-primary">See more</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Middle Column -->
+                <div class="col-lg-4 col-md-12">
+                    <div class="middle-column">
+                        <div class="places-column">
+                            <h3 class="section-title">Places to visit</h3>
+                            <ul class="navigation-list">
+                                <li style="--i: 0"><a href="#" class="nav-link">Burj Khalifa</a></li>
+                                <li style="--i: 1"><a href="#" class="nav-link">Burj Al Arab</a></li>
+                                <li style="--i: 2"><a href="#" class="nav-link">Grand Mosque</a></li>
+                                <li style="--i: 3"><a href="#" class="nav-link">Dubai Mall</a></li>
+                                <li style="--i: 4"><a href="#" class="nav-link">Dubai Museum</a></li>
+                                <li style="--i: 5"><a href="#" class="nav-link">Dubai Fountains</a></li>
+                            </ul>
+                        </div>
+                        <div class="things-column">
+                            <h3 class="section-title">Things to do</h3>
+                            <ul class="navigation-list">
+                                <li style="--i: 0"><a href="#" class="nav-link">City Tour</a></li>
+                                <li style="--i: 1"><a href="#" class="nav-link">Desert Safari</a></li>
+                                <li style="--i: 2"><a href="#" class="nav-link">Dhow Cruise</a></li>
+                                <li style="--i: 3"><a href="#" class="nav-link">Marina Cruise</a></li>
+                                <li style="--i: 4"><a href="#" class="nav-link">Jet Ski to Burj Al Arab</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column (Images) -->
+                <div class="col-lg-5 col-md-12">
+                    <div class="right-column">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <img src="images/alarab.png" alt="Burj Al Arab" class="img-fluid hero-image" />
+                            </div>
+                            <div class="col-6">
+                                <img src="images/khalifa.png" alt="Burj Khalifa" class="img-fluid hero-image" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+
+        <!-- Bottom Red Bars -->
+        <div class="red-bars">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="red-bar">Places to Visit</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="red-bar">Things to do</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Cards Section -->
+        <div class="content-section">
+            <div class="row g-4">
+                
+                <!-- Burj Khalifa Card -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="content-card animate-on-scroll" style="--card-index: 0">
+                        <h4 class="card-title">Burj Khalifa</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c11.png" alt="Burj Khalifa 1">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c12.png" alt="Burj Khalifa 2">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            Burj Khalifa: Let's cut to the chase—you haven't really seen Dubai until you've stood at the base of the
+                            Burj Khalifa, craning your neck until it hurts. This isn't just a tall building; it's a middle finger to
+                            gravity. At 828 meters, the views from "At the Top" (124th floor) will make your stomach drop—the city
+                            sprawls beneath you like a toy model, with tiny cars inching along highways and the desert bleeding into
+                            the ocean. Go at sunset when the light turns the glass towers into molten gold. Pro tip: Skip the basic
+                            tickets and splurge on the SKY level (148th floor)—you'll bypass the crowds and get a champagne toast
+                            that feels ridiculously fancy when you're hovering a half-mile in the air.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- City Tour Card -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="content-card animate-on-scroll" style="--card-index: 1">
+                        <h4 class="card-title">City Tour</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c21.png" alt="City Tour 1">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c22.png" alt="City Tour 2">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            City Tour: Let's be real—no trip to Dubai is complete without a city tour, but this isn't your average hop-on-hop-off snoozefest. One minute you're gawking at the Burj Khalifa, so tall it looks like it's poking a hole in the sky, and the next, you're lost in the spice-scented alleys of Al Fahidi, where the air smells like cardamom and centuries-old history. The contrast is wild—gold-plated supercars zoom past camel markets, and traditional wind towers sit in the shadow of glass skyscrapers. Don't just stick to the guidebook highlights; sneak into the Dubai Frame for a literal picture-perfect view of old vs. new, and if you're lucky, catch the sunset from the Palm Jumeirah Boardwalk. Pro tip? Wear comfy shoes—you'll be craning your neck so much at the architecture, you might trip over your own feet.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Burj Al Arab Card -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="content-card animate-on-scroll" style="--card-index: 2">
+                        <h4 class="card-title">Burj Al Arab</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c31.png" alt="Burj Al Arab 1">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c32.png" alt="Burj Al Arab 2">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            Burj Al Arab: That sail-shaped silhouette isn't just a hotel—it's a flex. The Burj Al Arab doesn't do "subtle." Gold-leaf ceilings? Check. A helipad that hosted Federer and Djokovic playing tennis? Obviously. You'll need a reservation (or a room starting at $1K/night) to get past the lobby, but even the exterior is worth the drive. Snap pics from the public beach next door, where the contrast of that absurdly opulent tower against the blue Gulf is pure Dubai in one frame.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desert Safari Card -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="content-card animate-on-scroll" style="--card-index: 3">
+                        <h4 class="card-title">Desert Safari</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c41.png" alt="Desert Safari 1">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c42.png" alt="Desert Safari 2">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            Desert Safari: Hold onto your stomach—this isn't just a desert; it's a rollercoaster without tracks. The second your 4x4 hits those dunes, you're in for a wild ride of heart-in-your-throat drops and tire-spinning climbs. But the real magic happens when the engine cuts off. Suddenly, it's just you, endless golden sand, and a sky that turns into a pink-and-orange canvas at sunset. Swap adrenaline for culture with camel rides that feel like sailing on lumpy boats, or get a henna tattoo while sipping karak chai that's sweeter than it has any right to be. As night falls, feast on grilled meats under the stars while belly dancers shimmy to hypnotic beats. Just don't wear white—between the sand and the barbecue sauce, it's a losing battle.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grand Mosque Card -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="content-card animate-on-scroll" style="--card-index: 4">
+                        <h4 class="card-title">Grand Mosque</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c51.png" alt="Grand Mosque 1">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c52.png" alt="Grand Mosque 2">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            Grand Mosque: No, not that Grand Mosque—this is Sheikh Zayed's little sister in Dubai, and she's stunning. The blinding white domes and minarets glow like they're lit from within, especially at golden hour when the marble seems to melt into the sky. Inside, it's all intricate floral mosaics, a chandelier that weighs as much as a small plane, and a carpet so vast you'll wonder how they got it through the door. Dress modestly (abayas are provided), and stay for the evening call to prayer—the echo under those arches is hauntingly beautiful.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dhow Cruise Card -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="content-card animate-on-scroll" style="--card-index: 5">
+                        <h4 class="card-title">Dhow Cruise</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c61.png" alt="Dhow Cruise 1">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c62.png" alt="Dhow Cruise 2">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            Dhow Cruise: Forget sleek yachts—Dubai's soul is best seen from a wooden dhow, gently bobbing along the Dubai Creek. As the city's skyline twinkles like a kid's glitter project, you'll glide past trading dhows loaded with spices and textiles, just like they've done for decades. The buffet? Surprisingly legit—think smoky kebabs, creamy hummus, and desserts sticky with honey. But the real showstopper is the breeze—warm, salty, and laced with the hum of distant souks. Time it for sunset, when the minarets glow gold against the pink sky, and you'll see why this sleepy cruise beats any flashy marina party.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dubai Mall Card -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="content-card animate-on-scroll" style="--card-index: 6">
+                        <h4 class="card-title">Dubai Mall</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c71.png" alt="Dubai Mall 1">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c72.png" alt="Dubai Mall 2">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            Dubai Mall: This isn't shopping—it's an Olympic sport. The Dubai Mall is less "mall" and more "city-within-a-city," complete with an aquarium (where sharks glide overhead as you browse shoes), an ice rink (because why not), and a waterfall with sculpted divers frozen mid-plunge. You'll get lost. You'll spend too much money. You'll eat at a restaurant overlooking the fountains while questioning your life choices. Lean into it.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Marina Cruise Card -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="content-card animate-on-scroll" style="--card-index: 7">
+                        <h4 class="card-title">Marina Cruise</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c81.png" alt="Marina Cruise 1">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c82.png" alt="Marina Cruise 2">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            Marina Cruise: If the Creek is Dubai's past, the Marina is its over-the-top present. Aboard a sleek yacht, you'll weave through a canyon of skyscrapers so shiny you can check your reflection. The Palm's fronds loom like a sci-fi mirage, while the Atlantis Hotel pretends it's Poseidon's lost palace. Opt for an evening cruise, when the buildings light up like a billionaire's disco, and the Burj Al Arab's sail-shaped silhouette steals the show. Champagne in hand, you'll feel like a extra in a Bond movie—just try not to gawk when a megayacht the size of a mall floats by.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dubai Museum Card -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="content-card animate-on-scroll" style="--card-index: 8">
+                        <h4 class="card-title">Dubai Museum</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c91.png" alt="Dubai Museum 1">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c92.png" alt="Dubai Museum 2">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            Dubai Museum: Tucked inside the 18th-century Al Fahidi Fort, this place is Dubai's origin story. The contrast is jarring—outside, skyscrapers claw at the sky; inside, exhibits show pearl divers gripping knives in their teeth and Bedouins navigating dunes with stars. The cool, dark galleries are a respite from the heat, and the dioramas of old souks (complete with lifelike wax figures haggling) make you realize how fast this place went from fishing village to sci-fi metropolis.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Jet Ski Card -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="content-card animate-on-scroll" style="--card-index: 9">
+                        <h4 class="card-title">Jet Ski</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c101.png" alt="Jet Ski 1">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c102.png" alt="Jet Ski 2">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            Jet Ski: Want to really see the Burj Al Arab? Ditch the postcard views and hit the waves. On a jet ski, Dubai's most famous hotel isn't just a backdrop—it's a towering, sail-shaped giant you can almost high-five as you zip past. The water's so blue it hurts your eyes, and the spray in your face is the best antidote to the desert heat. Your guide will lead you past hidden beaches and secret coves, with the city's skyline winking in the distance. Just don't forget your GoPro—when you're that close to an icon, proof is non-negotiable.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dubai Fountains Card -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="content-card animate-on-scroll" style="--card-index: 10">
+                        <h4 class="card-title">Dubai Fountains</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c111.png" alt="Dubai Fountains 1">
+                            </div>
+                            <div class="col-6">
+                                <img class="img-fluid card-image" src="images/c112.png" alt="Dubai Fountains 2">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            Dubai Fountains: Forget Bellagio—these fountains are next-level. Every 30 minutes after sunset, water erupts 140 meters high, twisting to Arabic ballads or, bizarrely, Celine Dion. The best view? From a abra (water taxi) bobbing on the lake, where the mist kisses your face as lights dance across Burj Khalifa. It's cheesy, spectacular, and so Dubai—over-the-top, unapologetic, and impossible to ignore.
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.nav-link').forEach((link, index) => {
+            link.style.setProperty('--i', index);
+        });
+
+        document.querySelectorAll('.content-card').forEach((card, index) => {
+            card.style.setProperty('--card-index', index);
+        });
+
+        // Parallax effect for background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('body::before');
+            const speed = scrolled * 0.5;
+        });
+
+        // Loading screen removal
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loading-overlay').style.display = 'none';
+            }, 2000);
+        });
+
+        // Add hover effects to images
+        document.querySelectorAll('.card-image, .hero-image').forEach(img => {
+            img.addEventListener('mouseenter', function() {
+                this.style.filter = 'brightness(1.1) contrast(1.1)';
+            });
+            
+            img.addEventListener('mouseleave', function() {
+                this.style.filter = 'brightness(1) contrast(1)';
+            });
+        });
+
+        // Smooth scrolling for links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
